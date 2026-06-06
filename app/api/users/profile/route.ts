@@ -6,15 +6,9 @@ export async function POST(req : NextRequest) {
 
         const formData = await req.formData();
 
-        await API_SERVER_USER_PROFILE(formData)
+        const result = await API_SERVER_USER_PROFILE(formData);
 
-        // const dataArr = Array.from(paramsData.getAll("item"));
-
-        // const formData = new FormData();
-
-        // for(let i = 0; i < dataArr.length; i++) formData.append("filesData",dataArr[i]);
-
-        return NextResponse.json({ status : 200 });
+        return NextResponse.json(result, { status : 200 });
     }
     catch(err) {
         console.log(err)
