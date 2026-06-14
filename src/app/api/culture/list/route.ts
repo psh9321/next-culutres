@@ -19,14 +19,13 @@ export async function POST(req : NextRequest) {
 
         const response = await API_SERVER_CULTURE_INFO_LIST(querys);
 
-        if(response["resultCode"] !== 200) return response;
+        if(response["resultCode"] !== 200) {
+            return NextResponse.json(response, { status : 200 });
+        }
 
-        const result = response["data"];
-
-        return NextResponse.json(result, { status : 200 });
+        return NextResponse.json(response["data"], { status : 200 });
     }
     catch(err) {
-        const result =new ApiFail(err, "문화정보 불러오기 에러")
-        return NextResponse.json(result, {status : 500});
+        return NextResponse.json(err, {status : 500});
     }
 }

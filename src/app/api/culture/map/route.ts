@@ -14,11 +14,11 @@ export async function POST(req : NextRequest) {
             ...params
         })
 
-        if(response.resultCode !== 200) return response;
+        if(response["resultCode"] !== 200) {
+            return NextResponse.json(response, { status : 200 });
+        }
 
-        const result = response["data"]
-
-        return NextResponse.json(result, { status : 200 });
+        return NextResponse.json(response["data"], { status : 200 });
     }
     catch(err) {
         console.log(err)
