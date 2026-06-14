@@ -1,14 +1,14 @@
 import "next-auth"
 import "next-auth/jwt"
 
-type SocialType = "google" | "naver" | "kakao"
+type SOCIAL_TYPE = "google" | "naver" | "kakao"
 
 declare module "next-auth" {
     interface Session {
         user : {
             id : string;
             name : string;
-            type : SocialType;
+            type : SOCIAL_TYPE;
             createDate : string;
             profileImg: string;
         }
@@ -17,7 +17,7 @@ declare module "next-auth" {
     interface User {
         id : string;
         name : string;
-        type : SocialType;
+        type : SOCIAL_TYPE;
         createDate : string
         profileImg: string;
     }
@@ -27,7 +27,7 @@ declare module "next-auth/jwt" {
     interface JWT {
         id : string;
         name : string;
-        type : SocialType;
+        type : SOCIAL_TYPE;
         createDate : string;
         profileImg: string;
     }

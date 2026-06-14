@@ -1,129 +1,56 @@
-# Discover Exhibitions 
+## 주요 기술 스택 
+ - Next.js (AppRouter)
+ - TypeScript
+ - React Query, Zustand
+ - NextAuth
+ - Styled-Components
+ - Ky
 
-## 개발 환경
- - node@24.12.0
- - pnpm@10.2.0
+## 파일 별 책임 분리 설계
 
-## 기술 스택 
- - 프레임워크 : Next.js(AppRouter)
- - 상태 관리 : react-query, zustand
- - UI / 스타일링 : styled-components
- - 언어 : TypeScript
+- page.tsx : 서버 페이지
+- _view.tsx : 클라이언트 페이지
+- layout.tsx : root 페이지
+- _html.tsx : styled-components
 
-## Architecture 
- - FSD 디자인 패턴 적용 
+## FSD 디자인 패턴 적용
 
-### 구조
- - entities : API 도메인 별 최소 단위 UI 및 API, hook, zustand store 모음
- - features : 기능이 들어간 컴포넌트 UI
- - provider : 전역 프로바이더
- - shared : 전역으로 사용되는 ui, 유틸 기능 등등
- - widgets : 페이지를 구성하는 조립 단위 UI
+- entities : API 도메인 별 최소 단위 UI 및 API, hook, zustand store 모음
+- features : 기능이 들어간 컴포넌트 UI
+- provider : 전역 프로바이더
+- script : 외부 스크립트
+- shared : 전역으로 사용되는 ui, 유틸 기능 등등
+- styles : 전역 스타일
+- widgets : 페이지를 구성하는 조립 단위 UI
 
+## 클라이언트 <=> Next API Router <=> Backend 통신 구조 설계
 
-## Page 
- - 서버 페이지, 클라이언트 페이지로 분리
- - 화살표 함수로 생성 
- - export default 로 내보냄 
+## 주요 기능
 
-### naming 
- - Pascal + camelCase 로 네이밍 
- - Server Page 의 경우 ~PageServer 로 naming
- - Client Page 의 경우 ~PageView 로 naming
+### 소셜 로그인
+ - NextAuth 기반 OAuth 로그인
+ - Naver, Kakao, Google 로그인 지원
 
-### Server Page 
- - page.tsx 로 생성
- - prefetch 및 Server API 를 호출 할 수 있음
- ```
-    const IndexPageServer = () => {
-        return <>IndexPageServer</>
-    }
+### 전시 검색
+ - Debounce 기반 검색
+ - URL QueryString 기반 검색 상태 관리
+ - 브라우저 히스토리 누적 없이 검색 상태 동기화
 
-    export default IndexPageServer;
- ```
+### 반응형 UI
+ - Desktop / Tablet / Mobile 대응
+ - use-media-query 기반 조건부 렌더링
 
-### Client Page 
- - _view.tsx 로 생성
- - "use client" 
- - shared, entities, fetures, widgets 등을 조합
+### 로딩 상태 관리
+ - Zustand를 활용한 전역 로딩 상태 관리
+ - 목록 조회, 검색, 상세 페이지 진입 시 사용자 피드백 제공
 
- ```
-    "use client"
+## 아키텍처
 
-    const IndexPageView = () => {
-        return <>IndexPageView</>
-    }
+### Client → Next API Router → Open API
+ - 외부 API 호출을 Next API Router에서 중계
+ - 클라이언트와 외부 API를 분리한 구조 설계
 
-    export default IndexPageView;
- ```
-
-
-## Component 
- - tsx 파일로 생성 
- 
-### naming 
- - Pascal + camelCase 로 네이밍 
-
-### component 
- - 화살표 함수로 생성
- - export 로 내보냄 
- ```
-    export const Component = () => {
-        return <>Component</>
-    }
-
- ```
-
-## API  
- - ts 파일로 생성
- - asnyc/await function 으로 생성
- - try/catch 문으로 생성
- - try 블록에는 return 
- - catch 블록에서는 throw
- - server, client 용으로 분리 처리 
- - export 로 내보냄
-
-### naming 
- - UPPER_SNAKE_CASE 로 네이밍 
- - 서버 페이지 및 NextApiRouter 에서 호출하는 API 인 경우 API_SERVER_~
- - fetures 의 클라이언트 컴포넌트 에서 NextApiRouter 로 호출하는 API 인 경우 API_CLIENT_~
-
-### Client API 
- - fetures 의 클라이언트 컴포넌트 에서 NextApiRouter 로 호출 하는 API
- - only post 로 호출
- ```
-    export async function API_CLIENT_CALLBACK() {
-        try {
-            const api = await fetch("", {
-                method : "post",
-                body : JSON.stringfy({data : 123}),
-            });
-        }
-        catch(err) {
-            throw err;
-        }
-    }
- ```
-
-### Server API 
- - 서버 페이지 및 NextApiRouter 에서 호출하는 API
-
- ``` 
-    export async function API_SERVER_CALLBACK() {
-        try {
-            const api = await fetch("api", {
-                method : "get"
-            });
-        }
-        catch(err) {
-            throw err;
-        }
-    }
- ```
-
-
-## Types 
- - declare 로 내보내 별도의 import 없이 전역으로 사용
-
-### naming 
- - UPPER_SNAKE_CASE 로 네이밍 
+### SSR + CSR Hybrid Rendering
+ - React Query Hydration 적용
+ - 서버 데이터 Prefetch 후 클라이언트 캐시 전달
+ - 검색 결과 및 상세 페이지 렌더링 최적화
