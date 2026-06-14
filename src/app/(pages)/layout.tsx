@@ -1,0 +1,20 @@
+"use client"
+
+import { ReactNode } from "react";
+
+interface ROOT_LAYOUT extends LAYOUT_CHILD {
+    parallel : ReactNode,
+}
+
+const PageRoot = ({ children, parallel } : ROOT_LAYOUT) => {
+
+    return (
+        <>
+            {children}
+            {parallel}
+        </>
+        
+    );
+};
+
+export default PageRoot;

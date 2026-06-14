@@ -1,0 +1,25 @@
+import { BACKEND_API } from "@/shared/api/server.instance";
+import { SetToken } from "@/shared/lib/token";
+
+export async function API_SERVER_CULTURE_INFO_LIST(querys : API_SERVER_CULTURE_INFO_LIST_PARAMS) {
+    try {
+       const api = await BACKEND_API("culture/list", {
+        method : "get",
+        searchParams : {
+            ...querys
+        }
+       });
+
+       if(!api.ok) throw api.statusText;
+
+       await SetToken(api.headers);
+
+       const result = await api.json<API_SERVER_CULTURE_LIST>();
+
+        return result;
+    }
+    catch(err) {
+        console.log("API_SERVER_CULTURE_INFO_LIST error", err);
+        throw err;
+    }
+}

@@ -1,0 +1,69 @@
+body {
+    color : #fff;
+}
+
+* {
+    font-family: basic;
+}
+
+body::-webkit-scrollbar { 
+    display: none;
+}
+
+/* body::-webkit-scrollbar-track */
+
+body:after {
+    content : "";
+    position : fixed;
+    top : 0;
+    left : 0;
+    display : block;
+    width : 100%;
+    height : 100%;
+    background:
+    /* 상단 단색 영역 */
+    linear-gradient(
+        180deg,
+        #040c1d 0px,
+        #040c1d 100px,
+        transparent 180px
+    ),
+
+    /* 붉은 빛 */
+    radial-gradient(
+        circle at 18% 82%,
+        rgba(255, 60, 60, 0.25),
+        transparent 35%
+    ),
+
+    /* 파란 빛 */
+    radial-gradient(
+        circle at 50% 20%,
+        rgba(0, 90, 255, 0.22),
+        transparent 40%
+    ),
+
+    /* 보라 빛 */
+    radial-gradient(
+        circle at 45% 45%,
+        rgba(120, 0, 255, 0.12),
+        transparent 45%
+    ),
+
+    /* 기본 배경 */
+    linear-gradient(
+        180deg,
+        #040c1d 0%,
+        #01050d 55%,
+        #000000 100%
+    );
+    z-index: -1;
+}
+
+.hidden {
+    position: absolute;
+    left: -9999999px;
+    width: 0;
+    height: 0;
+    z-index: 0;
+}
