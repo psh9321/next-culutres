@@ -29,7 +29,7 @@ export const BtnToggleFavorite = () => {
                 area : area as DISTRICT,
             });
 
-            if(resultCode === -999) return InitAlert(toastOpts["unLogin"], LogoutCallback);
+            if(resultCode === -999) return InitAlert(toastOpts["unLogin"]);
 
             SetActiveFavorite(data?.toggleStatus as boolean);
         }

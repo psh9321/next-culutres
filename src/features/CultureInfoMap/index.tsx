@@ -8,7 +8,7 @@ import { Minus, Plus, Search } from "lucide-react";
 
 import { useGeolocationHook } from "@/entities/culture/map/hook/useGeolocationHook"
 import { useCultureInfoMapHook } from "@/entities/culture/map/hook/useCultureInfoMapHook";
-import { NaviMarker } from "@/features/CultureInfoMap/ui/NaviMarker";
+import { NaviMarker } from "@/entities/culture/map/ui/NaviMarker";
 
 import { MapBox, MapFrame, BtnSearchArea, BtnZoom, ZoomControls } from "./_html";
 
@@ -100,10 +100,10 @@ export const CultureInfoMap = ({
         SetCanSearchArea(!IsSameCoordinates(searchedCoordinatesRef.current, nextCoordinates));
     }, []);
 
-    function onClickZoomCallback(event: React.MouseEvent<HTMLButtonElement>, delta: number){
-        event.preventDefault();
-        event.stopPropagation();
-        event.nativeEvent.stopImmediatePropagation();
+    function onClickZoomCallback(e: React.MouseEvent<HTMLButtonElement>, delta: number){
+        e.preventDefault();
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
 
         const map = mapInstanceRef.current;
 
@@ -124,9 +124,9 @@ export const CultureInfoMap = ({
         navigation.push(`/culture/${seq}`);
     }, [navigation]);
 
-    function onClickSearchAreaCallback(event: React.MouseEvent<HTMLButtonElement>) {
-        event.preventDefault();
-        event.stopPropagation();
+    function onClickSearchAreaCallback(e: React.MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        e.stopPropagation();
 
         const map = mapInstanceRef.current;
 

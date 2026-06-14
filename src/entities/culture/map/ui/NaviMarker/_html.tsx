@@ -27,6 +27,10 @@ export const TargetCultureInfoListBox = styled.article`
     background : url("/modalBackground.png") no-repeat bottom;
     border-radius : 10px;
     z-index: 6;
+
+    @media all and (max-width : 500px) {
+        width : calc(100% - 40px);
+    }
 `
 
 export const BtnTargetCultureInfoListBox = styled.button`
@@ -40,6 +44,20 @@ export const BtnTargetCultureInfoListBox = styled.button`
         height : 30px;
     }
 
+`
+
+export const ImgBox = styled.div`
+    position :relative;
+    flex-shrink : 0;
+    width : 150px;
+    height : 200px;
+    border-radius : 10px;
+    overflow : hidden;
+
+    @media all and (max-width : 500px) {
+        width : 100%;
+        height : 100vw;
+    }
 `
 
 export const TargetCultureInfoList = styled.ul`
@@ -56,6 +74,8 @@ export const TargetCultureInfoList = styled.ul`
         display : flex;
         width : 100%;
 
+        cursor : pointer;
+
         &:nth-child(n+2) {
             margin-top : 20px;
         }
@@ -63,7 +83,6 @@ export const TargetCultureInfoList = styled.ul`
         > div {
             display : flex;    
             width : 100%;
-            cursor : pointer;
             
             dl {
                 width : calc(100% - 160px);
@@ -101,22 +120,24 @@ export const TargetCultureInfoList = styled.ul`
             }        
         }
 
-
-
         &:hover {
             dl {
                 background-color : rgba(255,255,255,0.2);          
             }
         }
     }
-
-`
-
-export const ImgBox = styled.div`
-    position :relative;
-    flex-shrink : 0;
-    width : 150px;
-    height : 200px;
-    border-radius : 10px;
-    overflow : hidden;
+        @media all and (max-width : 500px) {
+        height : 50dvh;
+            li {
+                > div {
+                    flex-direction : column;
+                    justify-content : center;
+                    align-items :center;
+                    dl {
+                        width: 100%;
+                        margin-top : 10px;
+                    }         
+                }
+            }
+        }
 `

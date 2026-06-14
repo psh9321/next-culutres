@@ -42,7 +42,7 @@ export const NaviMarker = ({ items, navigationCallback } : NAVI_MARKER) => {
             {
                 isList && <Portal>
                     <TargetCultureInfoListBox>
-                        <h2 className="hidden">ㅇ</h2>
+                        <h2 className="hidden">지역별 전시 박스</h2>
                         <BtnTargetCultureInfoListBox onClick={() => SetIsList(false)}>
                             <SquareX/>
                         </BtnTargetCultureInfoListBox>
