@@ -25,6 +25,7 @@ export const useFavoriteListHook = () => {
         isFetching, 
         isError, 
         isSuccess, 
-        favoriteTotal : data?.resultCode === 200 ? data.data?.length : 0
+        favoriteTotal : data?.resultCode === 200 ? data.data?.length : 0,
+        isLogin
     } 
 }

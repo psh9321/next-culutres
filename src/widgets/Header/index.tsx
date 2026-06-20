@@ -18,20 +18,14 @@ import { useSessionHook } from "@/entities/users/(post)/hook/useSessionHook"
 import { BackgroundLayer } from "@/shared/ui/BackgroundLayer"
 import { BodyScrollLock } from "@/shared/util/bodyScrollLock"
 
-import { HeaderWrapper, HeaderInner, HeaderLogo, HeaderBtnList, HeaderSearchWrapper, UserBoxWrapper, SideMenu, NaviContainer } from "./_html"
+import { HeaderWrapper, HeaderInner, HeaderLogo, HeaderBtnList, UserBoxWrapper, SideMenu, NaviContainer } from "./_html"
 
-interface HEADER {
-    isSearchBox? : boolean
-}
-
-export const Header = ({ isSearchBox = true } : HEADER) => {
+export const Header = () => {
     const [ isSearch, SetIsSearch ] = useState<boolean>(false);
 
     const [ isUserBox, SetIsUserBox ] = useState<boolean>(false);
 
     const [ isNav, SetIsNav ] = useState<boolean>(false);
-
-    const pathname = usePathname();
 
     const [ isSideMenu, SetIsSideMenu ] = useState<boolean>(false);
 
@@ -42,7 +36,7 @@ export const Header = ({ isSearchBox = true } : HEADER) => {
     function OnClickToggleSideMenu() {
         const is = !isSideMenu;
         SetIsSideMenu(is);
-        console.log(is)
+
         BodyScrollLock(is)
     }
 
@@ -65,22 +59,6 @@ export const Header = ({ isSearchBox = true } : HEADER) => {
                             !isNav &&<li>
                                 <button onClick={OnClickToggleSideMenu}><Menu/></button>
                             </li> 
-                        }
-                        {
-                            pathname === "/" && isSearchBox && 
-                            <li>
-                                <button  onClick={() => SetIsSearch(true)}><Search/></button>
-                                {
-                                    isSearch &&
-                                    <>
-                                        <HeaderSearchWrapper>
-                                            <CultureInfoSearch/>  
-                                        </HeaderSearchWrapper>
-                                        <BackgroundLayer onClick={() => SetIsSearch(false)}/>                                
-                                    </>
-                                }
-
-                            </li>
                         }
                         <li>
                             <button onClick={() => SetIsUserBox(true)}>

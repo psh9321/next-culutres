@@ -9,12 +9,12 @@ import { CultureInfoSearchFlexBox } from './_html';
 export const CultureInfoSearch = () => {
 
     return (
-        <div>
+        <>
             <SearchInput/>
             <CultureInfoSearchFlexBox>
                 <SearchType/>
                 <SearchArea/>
             </CultureInfoSearchFlexBox>
-        </div>
+        </>
     )
 }

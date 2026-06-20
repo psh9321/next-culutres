@@ -7,7 +7,7 @@ const MapPageView = () => {
 
     return (
         <>
-            <Header isSearchBox={false}/>
+            <Header/>
             <CultureInfoMapBox/>
         </>
     )

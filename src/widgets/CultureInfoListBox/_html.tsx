@@ -12,3 +12,8 @@ export const CultureListBoxWrapper = styled.section`
         padding : 0 20px;
     }
 `;
+
+export const SearchWrapper = styled.div`
+    max-width : calc(500px - 40px);
+    margin-bottom : 30px;
+`

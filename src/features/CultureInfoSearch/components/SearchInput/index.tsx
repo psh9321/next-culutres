@@ -57,7 +57,7 @@ export const SearchInput = () => {
 
     return (
         <InputBox>
-            <h2 className="hidden"></h2>
+            <h2 className="hidden">검색어 입력창</h2>
             <Search/>
             <Input defaultValue={searchParams.get("searchKeyword")??""} type="text" placeholder="전시 제목, 장소 검색" onInput={OnInputCallback} />
         </InputBox>

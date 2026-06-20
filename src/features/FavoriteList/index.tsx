@@ -1,7 +1,5 @@
 "use client"
 
-import { useRouter } from "next/navigation";
-
 import { useEffect, useMemo } from "react";
 
 import { LogoutCallback } from "@/entities/users/(post)/util/logout";

@@ -94,36 +94,6 @@ export const HeaderBtnList = styled.ul`
     }
 `
 
-export const HeaderSearchWrapper = styled.div`
-    position : absolute;
-    top : 50px;
-    left : -410px;
-    width : 450px;
-    padding : 20px;
-    background-color : #444444;
-    border-radius : 10px;
-    box-shadow : 5px 5px 5px rgba(0,0,0,0.8);
-    z-index : 6;
-
-    &:before {
-        content : "";
-        position : absolute;
-        top : -15px;
-        right : 10px;
-        border-left: 20px solid transparent;
-        border-right: 20px solid transparent;
-        border-bottom: 20px solid #444;
-    }
-
-    @media all and (max-width :550px) {
-        position : fixed;
-        top : 80px;
-        left : 50%;
-        transform : translateX(-50%);
-        width : calc(100% - 40px);
-    }
-`
-
 export const UserBoxWrapper = styled.div`
     position : absolute;
     top : 55px;
